@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>مستكشف القدرات | التقارير</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../../css/Reports.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-icon">
+            <i data-lucide="brain-circuit"></i>
+          </div>
+
+          <div class="brand-text">مستكشف<span>القدرات</span></div>
+        </div>
+
+        <div class="top-actions">
+          <button
+            class="icon-btn"
+            id="themeToggle"
+            title="تبديل المظهر"
+            aria-label="تبديل المظهر"
+          >
+            <i data-lucide="sun"></i>
+          </button>
+
+          <div class="notification-wrapper">
+            <button
+              class="icon-btn"
+              id="notificationToggle"
+              title="الإشعارات"
+              aria-label="الإشعارات"
+            >
+              <i data-lucide="bell"></i>
+            </button>
+
+            <div class="notification-panel" id="notificationPanel">
+              <div class="notification-head">
+                <strong>الإشعارات</strong>
+                <span class="notification-count">0 جديد</span>
+              </div>
+
+              <div class="notification-empty">
+                <i data-lucide="bell-off"></i>
+
+                <strong>لا توجد إشعارات</strong>
+
+                لا توجد إشعارات جديدة حاليًا.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile">
+          <div class="avatar" id="userAvatar">م</div>
+
+          <div class="profile-info">
+            <div class="profile-name" id="sidebarUserName">جاري التحميل...</div>
+
+            <div class="profile-role">
+              <span class="status-dot"></span>
+              ولي أمر
+            </div>
+          </div>
+        </div>
+        <div class="menu-title">القائمة الرئيسية</div>
+
+        <nav class="nav">
+          <a href="./dashboard.html" class="nav-item">
+            <i data-lucide="layout-dashboard"></i>
+            <span>لوحة القيادة</span>
+          </a>
+
+          <a href="./children.html" class="nav-item">
+            <i data-lucide="users-round"></i>
+            <span>الأطفال</span>
+          </a>
+
+          <a href="./tests.html" class="nav-item">
+            <i data-lucide="brain"></i>
+            <span>الاختبارات</span>
+          </a>
+
+          <a href="./games.html" class="nav-item">
+            <i data-lucide="gamepad-2"></i>
+            <span>الألعاب</span>
+          </a>
+
+          <a href="./reports.html" class="nav-item active">
+            <i data-lucide="file-chart-column"></i>
+            <span>التقارير</span>
+          </a>
+
+          <a href="./Messages.html" class="nav-item">
+            <i data-lucide="message-circle"></i>
+            <span>الرسائل</span>
+          </a>
+        </nav>
+
+        <div class="logout">
+          <a href="../../index.html" class="nav-item" id="logoutBtn">
+            <i data-lucide="log-out"></i>
+            <span>تسجيل الخروج</span>
+          </a>
+        </div>
+      </aside>
+      <main class="main">
+        <section class="page-header">
+          <div>
+            <div class="page-title-row">
+              <div class="page-icon">
+                <i data-lucide="file-chart-column"></i>
+              </div>
+
+              <div>
+                <h1>التقارير</h1>
+
+                <p>تابع تقارير أطفالك واطلع على آخر التقييمات والتوصيات.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="date-pill">
+            <i data-lucide="calendar-days"></i>
+            <span id="currentDate"></span>
+          </div>
+        </section>
+        <section class="filter-card">
+          <div class="search-box">
+            <i data-lucide="search"></i>
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="ابحث عن تقرير..."
+            />
+          </div>
+
+          <div class="child-filter">
+            <i data-lucide="user-round"></i>
+
+            <select id="childFilter">
+              <option value="">جميع الأطفال</option>
+            </select>
+          </div>
+        </section>
+        <section class="reports-section">
+          <div class="section-head">
+            <div class="section-title">
+              <div class="section-icon">
+                <i data-lucide="files"></i>
+              </div>
+
+              <div>
+                <h2>جميع التقارير</h2>
+
+                <span id="reportsCount"> جاري التحميل... </span>
+              </div>
+            </div>
+          </div>
+          <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+
+            <span> جاري تحميل التقارير... </span>
+          </div>
+          <div
+            class="state-box error-state"
+            id="errorState"
+            style="display: none"
+          >
+            <div class="state-icon">
+              <i data-lucide="triangle-alert"></i>
+            </div>
+
+            <strong> تعذر تحميل التقارير </strong>
+
+            <p id="errorMessage">حدث خطأ أثناء تحميل البيانات.</p>
+
+            <button class="retry-btn" id="retryBtn">
+              <i data-lucide="refresh-cw"></i>
+              إعادة المحاولة
+            </button>
+          </div>
+          <div class="state-box" id="emptyState" style="display: none">
+            <div class="state-icon">
+              <i data-lucide="file-x-2"></i>
+            </div>
+
+            <strong> لا توجد تقارير </strong>
+
+            <p>لا توجد تقارير متاحة حاليًا لأطفالك.</p>
+          </div>
+          <div class="reports-grid" id="reportsGrid"></div>
+        </section>
+      </main>
+    </div>
+    <div class="modal-overlay" id="reportModal">
+      <div class="report-modal">
+        <button class="modal-close" id="closeModal" aria-label="إغلاق">
+          <i data-lucide="x"></i>
+        </button>
+
+        <div class="modal-top">
+          <div class="modal-icon">
+            <i data-lucide="file-text"></i>
+          </div>
+
+          <div>
+            <span class="modal-label"> تقرير التقييم </span>
+
+            <h2 id="modalTitle">-</h2>
+
+            <span class="modal-child" id="modalChild"> - </span>
+          </div>
+        </div>
+
+        <div class="modal-content">
+          <div class="detail-block">
+            <div class="detail-heading">
+              <i data-lucide="circle-alert"></i>
+              <strong> نقاط الضعف </strong>
+            </div>
+
+            <p id="modalWeaknesses">-</p>
+          </div>
+
+          <div class="detail-block recommendation-block">
+            <div class="detail-heading">
+              <i data-lucide="lightbulb"></i>
+              <strong> التوصيات </strong>
+            </div>
+
+            <p id="modalRecommendations">-</p>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="download-btn" id="modalDownload">
+            <i data-lucide="download"></i>
+            تنزيل التقرير PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/Reports.js"></script>
+  </body>
+</html>

@@ -1,0 +1,361 @@
+:root {
+  --primary: #159fe0;
+  --primary-dark: #0d8dcc;
+  --primary-soft: #eaf7fd;
+  --text: #17212b;
+  --muted: #718096;
+  --bg: #f5f8fb;
+  --surface: #fff;
+  --border: #e5edf3;
+  --shadow: 0 10px 30px rgba(31, 65, 88, 0.07);
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  font: inherit;
+}
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+.sidebar {
+  width: 286px;
+  min-width: 286px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 8px 22px;
+}
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #18aae9, #087fc2);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.brand-icon i {
+  width: 23px;
+}
+.brand-text {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+.brand-text span {
+  display: block;
+  margin-top: 5px;
+}
+.top-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 7px;
+  margin-bottom: 17px;
+}
+.icon-btn {
+  border: 0;
+  background: #f7fafc;
+  width: 37px;
+  height: 37px;
+  border-radius: 12px;
+  color: #667788;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.icon-btn i {
+  width: 18px;
+}
+.profile {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 12px 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+.avatar {
+  width: 39px;
+  height: 39px;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+.profile-info {
+  flex: 1;
+}
+.profile-name {
+  font-size: 13px;
+  font-weight: 800;
+}
+.profile-role {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #25bd86;
+  margin-left: 5px;
+}
+.menu-title {
+  font-size: 12px;
+  color: #9aa8b5;
+  font-weight: 700;
+  padding: 0 13px 9px;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-item {
+  min-height: 46px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 13px;
+  color: #687888;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nav-item i {
+  width: 19px;
+}
+.nav-item:hover {
+  background: #f3f9fc;
+  color: var(--primary);
+}
+.nav-item.active {
+  background: #eaf7fd;
+  color: var(--primary);
+  font-weight: 800;
+}
+.logout {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.main {
+  flex: 1;
+  padding: 28px 30px;
+  min-width: 0;
+}
+.page-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.title-side {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.title-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 17px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+}
+.title-icon i {
+  width: 26px;
+}
+.page-title h1 {
+  margin: 0;
+  font-size: 29px;
+}
+.page-title p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.primary-btn {
+  height: 47px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 15px;
+  background: var(--primary);
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.primary-btn i {
+  width: 18px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+.empty {
+  min-height: 330px;
+  border: 1.5px dashed #dce6ed;
+  border-radius: 23px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #9aa8b5;
+}
+.empty-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #f6f8fa;
+  color: #aab6c1;
+  display: grid;
+  place-items: center;
+  margin-bottom: 15px;
+}
+.empty-icon i {
+  width: 30px;
+}
+.empty strong {
+  font-size: 16px;
+  color: #82919e;
+}
+.empty p {
+  margin: 7px 0 0;
+  font-size: 12px;
+}
+.notification-box {
+  position: fixed;
+  top: 72px;
+  right: 315px;
+  width: 330px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(31, 65, 88, 0.14);
+  padding: 18px;
+  display: none;
+  z-index: 100;
+}
+.notification-box.show {
+  display: block;
+}
+.notification-box h3 {
+  margin: 0 0 14px;
+}
+.notification-empty {
+  text-align: center;
+  padding: 28px 10px;
+  color: #8b9aa7;
+}
+.dark {
+  --text: #e7eef5;
+  --muted: #9aaaba;
+  --bg: #111923;
+  --surface: #192430;
+  --border: #2a3946;
+  --primary-soft: #17384a;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+.dark .icon-btn {
+  background: #202d39;
+  color: #b6c3cf;
+}
+.dark .nav-item:hover {
+  background: #20333f;
+}
+.dark .empty-icon {
+  background: #202b35;
+}
+.dark .notification-box {
+  background: #192430;
+}
+@media (max-width: 760px) {
+  .app {
+    display: block;
+  }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    padding: 15px;
+  }
+  .brand {
+    padding-bottom: 12px;
+  }
+  .top-actions {
+    position: absolute;
+    left: 15px;
+    top: 17px;
+  }
+  .profile {
+    margin-bottom: 13px;
+  }
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .menu-title {
+    display: none;
+  }
+  .logout {
+    display: none;
+  }
+  .main {
+    padding: 15px;
+  }
+  .page-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .primary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .notification-box {
+    right: 15px;
+    top: 130px;
+    width: calc(100% - 30px);
+  }
+}
+@media (max-width: 470px) {
+  .nav {
+    grid-template-columns: 1fr;
+  }
+}
