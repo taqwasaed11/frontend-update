@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>مستكشف القدرات | الرسائل</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="../../css/messages.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brandIcon">
+            <i data-lucide="brain-circuit"></i>
+          </div>
+
+          <b> مستكشف<span>القدرات</span> </b>
+        </div>
+
+        <div class="top">
+          <button id="theme" type="button">
+            <i data-lucide="sun"></i>
+          </button>
+
+          <button id="bell" type="button">
+            <i data-lucide="bell"></i>
+
+            <span id="bellBadge" class="bellBadge"> 0 </span>
+          </button>
+        </div>
+
+        <div class="profile">
+          <div id="userAvatar" class="userAvatar">م</div>
+
+          <div>
+            <strong id="userName"> المستخدم </strong>
+
+            <small> 🟢 ولي أمر </small>
+          </div>
+        </div>
+
+        <div class="menuTitle">القائمة الرئيسية</div>
+
+        <nav>
+          <a href="./dashboard.html">
+            <i data-lucide="layout-dashboard"></i>
+            لوحة القيادة
+          </a>
+
+          <a href="./children.html">
+            <i data-lucide="users-round"></i>
+            الأطفال
+          </a>
+
+          <a href="./tests.html">
+            <i data-lucide="brain"></i>
+            الاختبارات
+          </a>
+
+          <a href="./games.html">
+            <i data-lucide="gamepad-2"></i>
+            الألعاب
+          </a>
+
+          <a href="./reports.html">
+            <i data-lucide="file-chart-column"></i>
+            التقارير
+          </a>
+
+          <a class="active" href="./Messages.html">
+            <i data-lucide="message-circle"></i>
+            الرسائل
+
+            <span id="navUnread" class="navUnread"> 0 </span>
+          </a>
+        </nav>
+
+        <div class="logout">
+          <a href="../../index.html">
+            <i data-lucide="log-out"></i>
+
+            تسجيل الخروج
+          </a>
+        </div>
+      </aside>
+      <main class="main">
+        <div class="pageHeader">
+          <div>
+            <h1>الرسائل</h1>
+
+            <p>تواصل مع المختصين والمعلمين وتابع محادثاتك</p>
+          </div>
+
+          <button id="newMessageBtn" class="primary" type="button">
+            <i data-lucide="square-pen"></i>
+
+            رسالة جديدة
+          </button>
+        </div>
+        <section class="messagesLayout">
+          <div class="conversationPanel">
+            <div class="panelHeader">
+              <div>
+                <h2>المحادثات</h2>
+
+                <small id="conversationCount"> 0 محادثة </small>
+              </div>
+            </div>
+
+            <div class="conversationSearch">
+              <i data-lucide="search"></i>
+
+              <input
+                id="conversationSearch"
+                type="text"
+                placeholder="ابحث في المحادثات..."
+              />
+            </div>
+
+            <div id="conversationList" class="conversationList">
+              <div class="loadingSmall">جاري تحميل المحادثات...</div>
+            </div>
+          </div>
+          <div class="chatPanel">
+            <div id="emptyChat" class="emptyChat">
+              <div class="emptyChatIcon">
+                <i data-lucide="message-circle"></i>
+              </div>
+
+              <h2>اختر محادثة</h2>
+
+              <p>اختر محادثة من القائمة لعرض الرسائل</p>
+            </div>
+            <div id="activeChat" class="activeChat">
+              <div class="chatHeader">
+                <div class="chatUser">
+                  <div id="chatAvatar" class="chatAvatar">م</div>
+
+                  <div>
+                    <strong id="chatName"> - </strong>
+
+                    <small id="chatRole"> - </small>
+                  </div>
+                </div>
+
+                <button
+                  id="refreshChat"
+                  class="iconButton"
+                  type="button"
+                  title="تحديث"
+                >
+                  <i data-lucide="refresh-cw"></i>
+                </button>
+              </div>
+              <div id="messageList" class="messageList">
+                <div class="loadingSmall">جاري تحميل الرسائل...</div>
+              </div>
+              <form id="messageForm" class="messageForm">
+                <textarea
+                  id="messageInput"
+                  rows="1"
+                  placeholder="اكتب رسالتك هنا..."
+                ></textarea>
+
+                <button
+                  id="sendButton"
+                  class="sendButton"
+                  type="submit"
+                  title="إرسال"
+                >
+                  <i data-lucide="send"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div id="notifications" class="notifications">
+        <h3>الإشعارات</h3>
+
+        <p>
+          🔔
+          <br />
+          <br />
+          لا توجد إشعارات جديدة
+        </p>
+      </div>
+    </div>
+    <div id="newMessageOverlay" class="overlay">
+      <div class="modal">
+        <div class="modalHead">
+          <h2>رسالة جديدة</h2>
+
+          <button id="closeNewMessage" class="close" type="button">×</button>
+        </div>
+
+        <label>
+          البحث عن مستخدم
+
+          <div class="userSearch">
+            <i data-lucide="search"></i>
+
+            <input
+              id="userSearch"
+              type="text"
+              placeholder="اكتب اسم المستخدم..."
+            />
+          </div>
+        </label>
+
+        <div id="usersList" class="usersList">
+          <div class="loadingSmall">جاري تحميل المستخدمين...</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/messages.js"></script>
+  </body>
+</html>

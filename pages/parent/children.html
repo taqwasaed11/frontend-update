@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>مستكشف القدرات | الأطفال</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="../../css/children.css" />
+</head>
+
+<body>
+
+  <div class="app">
+
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brandIcon">
+          <i data-lucide="brain-circuit"></i>
+        </div>
+
+        <b>
+          مستكشف<span>القدرات</span>
+        </b>
+      </div>
+
+      <div class="top">
+
+        <button id="theme">
+          <i data-lucide="sun"></i>
+        </button>
+
+        <button id="bell">
+          <i data-lucide="bell"></i>
+        </button>
+
+      </div>
+
+      <div class="profile">
+
+        <div id="userAvatar" class="userAvatar">
+          م
+        </div>
+
+        <div>
+
+          <strong id="userName">
+            المستخدم
+          </strong>
+
+          <small>
+            🟢 ولي أمر
+          </small>
+
+        </div>
+
+      </div>
+
+      <div class="menuTitle">
+        القائمة الرئيسية
+      </div>
+
+      <nav>
+
+        <a href="./dashboard.html">
+          <i data-lucide="layout-dashboard"></i>
+          لوحة القيادة
+        </a>
+
+        <a class="active" href="./children.html">
+          <i data-lucide="users-round"></i>
+          الأطفال
+        </a>
+
+        <a href="./tests.html">
+          <i data-lucide="brain"></i>
+          الاختبارات
+        </a>
+
+        <a href="./games.html">
+          <i data-lucide="gamepad-2"></i>
+          الألعاب
+        </a>
+
+        <a href="./reports.html">
+          <i data-lucide="file-chart-column"></i>
+          التقارير
+        </a>
+
+        <a href="./Messages.html">
+          <i data-lucide="message-circle"></i>
+          الرسائل
+        </a>
+
+      </nav>
+
+      <div class="logout">
+
+        <a href="../../index.html">
+          <i data-lucide="log-out"></i>
+          تسجيل الخروج
+        </a>
+
+      </div>
+
+    </aside>
+
+    <main class="main">
+
+      <div class="heading">
+
+        <div class="headingTitle">
+
+          <div class="titleIcon">
+            <i data-lucide="users-round"></i>
+          </div>
+
+          <div>
+
+            <h1>
+              الأطفال
+            </h1>
+
+            <p>
+              إدارة ومتابعة ملفات أطفالك وتطورهم
+            </p>
+
+          </div>
+
+        </div>
+
+        <button
+          class="primary"
+          id="addBtn"
+          type="button"
+        >
+
+          <i data-lucide="plus"></i>
+
+          إضافة طفل
+
+        </button>
+
+      </div>
+      <div class="toolbar">
+
+        <div class="search">
+
+          <i data-lucide="search"></i>
+
+          <input
+            id="search"
+            type="text"
+            placeholder="ابحث عن طفل بالاسم..."
+          />
+
+        </div>
+
+        <div id="count" class="count">
+          0 أطفال
+        </div>
+
+      </div>
+      <section
+        id="grid"
+        class="grid"
+      ></section>
+
+    </main>
+    <div
+      id="notifications"
+      class="notifications"
+    >
+
+      <h3>
+        الإشعارات
+      </h3>
+
+      <p>
+        🔔
+        <br />
+        <br />
+        لا توجد إشعارات جديدة
+      </p>
+
+    </div>
+
+  </div>
+  <div
+    id="overlay"
+    class="overlay"
+  >
+
+    <div class="modal">
+
+      <div class="modalHead">
+
+        <h2 id="formTitle">
+          إضافة طفل
+        </h2>
+
+        <button
+          class="close"
+          id="closeForm"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="form">
+
+        <label>
+
+          اسم الطفل الكامل
+
+          <input
+            id="name"
+            type="text"
+            required
+            placeholder="مثال: محمود أحمد"
+          />
+
+        </label>
+
+
+        <label>
+
+          تاريخ الميلاد
+
+          <input
+            id="birth"
+            type="date"
+            required
+          />
+
+        </label>
+
+
+        <label>
+
+          الجنس
+
+          <select
+            id="gender"
+            required
+          >
+
+            <option value="">
+              اختر الجنس
+            </option>
+
+            <option value="بنت">
+              بنت
+            </option>
+
+            <option value="ولد">
+              ولد
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <div
+          id="formError"
+          class="error"
+        ></div>
+
+
+        <div class="modalActions">
+
+          <button
+            id="save"
+            class="primary"
+            type="submit"
+          >
+            إضافة الطفل
+          </button>
+
+          <button
+            id="cancel"
+            class="secondary"
+            type="button"
+          >
+            إلغاء
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="details"
+    class="overlay"
+  >
+
+    <div class="modal large">
+
+      <div class="modalHead">
+
+        <h2>
+          ملف الطفل
+        </h2>
+
+        <button
+          class="close"
+          id="closeDetails"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="detailHead">
+
+        <div
+          id="detailAvatar"
+          class="detailAvatar"
+        >
+          ط
+        </div>
+
+        <div>
+
+          <h3 id="detailName">
+            -
+          </h3>
+
+          <p id="detailBasic">
+            -
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="tabs">
+
+        <button
+          class="tab active"
+          data-tab="info"
+          type="button"
+        >
+          المعلومات
+        </button>
+
+        <button
+          class="tab"
+          data-tab="games"
+          type="button"
+        >
+          الألعاب
+        </button>
+
+        <button
+          class="tab"
+          data-tab="tests"
+          type="button"
+        >
+          الاختبارات
+        </button>
+
+        <button
+          class="tab"
+          data-tab="reports"
+          type="button"
+        >
+          التقارير
+        </button>
+
+      </div>
+
+
+      <div id="detailContent"></div>
+
+    </div>
+
+  </div>
+
+
+  <script src="../../js/children.js"></script>
+
+</body>
+
+</html>

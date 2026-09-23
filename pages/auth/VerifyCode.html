@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>مستكشف القدرات | التحقق من الكود</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../../css/verify-code.css" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <a href="./ForgetPassword.html" class="back-link">
+        <i class="fa-solid fa-arrow-right"></i>
+
+        العودة
+      </a>
+
+      <div class="verify-card">
+        <div class="brand">
+          <div class="brand-icon">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+
+          <div class="brand-name">مستكشف القدرات</div>
+        </div>
+
+        <div class="main-icon">
+          <i class="fa-solid fa-envelope-open-text"></i>
+        </div>
+
+        <div class="welcome">
+          <h1>تحقق من بريدك الإلكتروني</h1>
+
+          <p>أدخل كود التحقق الذي أرسلناه إلى بريدك الإلكتروني</p>
+
+          <div class="email-display" id="emailDisplay"></div>
+        </div>
+
+        <form id="verifyForm">
+          <label for="code"> كود التحقق </label>
+
+          <div class="code-wrapper">
+            <input
+              type="text"
+              id="code"
+              maxlength="10"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              placeholder="أدخل الكود"
+              required
+            />
+          </div>
+
+          <div class="error-message" id="codeError"></div>
+
+          <button type="submit" class="submit-button" id="verifyButton">
+            <span id="buttonText"> متابعة </span>
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            <span class="spinner" id="spinner"> </span>
+          </button>
+
+          <div class="info-message">
+            <i class="fa-solid fa-circle-info"></i>
+
+            بعد التحقق من الكود ستتمكن من إنشاء كلمة مرور جديدة.
+          </div>
+        </form>
+
+        <div class="bottom-text">
+          لم يصلك الكود؟
+
+          <a href="./ForgetPassword.html"> إرسال كود جديد </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/verify-code.js"></script>
+  </body>
+</html>
