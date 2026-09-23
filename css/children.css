@@ -5,8 +5,8 @@
   --m: #718096;
   --bg: #f5f8fb;
   --s: #fff;
-  --b: #e5edf3;
-  --r: #e65353;
+  --b: hsl(206, 37%, 93%);
+  --r: #7d53e6;
 }
 * {
   box-sizing: border-box;
