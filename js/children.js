@@ -214,10 +214,9 @@ function renderChildren(list = children) {
 
       const childGender = gender(child.gender ?? child.Gender);
 
-      const childAge =
-        child.age ??
-        child.Age ??
-        calculateAge(child.birthDate ?? child.BirthDate);
+      const childAge = calculateAge(child.birthDate ?? child.BirthDate) !== "-"
+        ? calculateAge(child.birthDate ?? child.BirthDate)
+        : (child.age ?? child.Age ?? "-");
 
       return `
         <article class="child">
@@ -339,7 +338,7 @@ async function loadChildren() {
   `;
 
   try {
-    const response = await fetch(API_BASE + "Children/GetMyChildren", {
+    const response = await fetch(API_BASE + "Parent/GetMyChildren", {
       method: "GET",
       headers: headers(),
     });
@@ -395,14 +394,37 @@ async function loadChildren() {
   }
 }
 
+function setBirthDateLimits() {
+  const birthInput = $("birth");
+  if (!birthInput) return;
+
+  const today = new Date();
+  const maxDate = new Date(today.getFullYear() - 2, today.getMonth(), today.getDate());
+  const minDate = new Date(today.getFullYear() - 10, today.getMonth(), today.getDate());
+
+  const toDateValue = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  birthInput.min = toDateValue(minDate);
+  birthInput.max = toDateValue(maxDate);
+}
+
 function openAdd() {
   editingId = null;
+
+  setBirthDateLimits();
 
   $("formTitle").textContent = "إضافة طفل";
 
   $("name").value = "";
 
   $("birth").value = "";
+
+  $("developmentalAge").value = "";
 
   $("gender").value = "";
 
@@ -422,11 +444,19 @@ function editChild(id) {
 
   editingId = id;
 
+  setBirthDateLimits();
+
   $("formTitle").textContent = "تعديل بيانات الطفل";
 
   $("name").value = child.fullName || child.FullName || child.name || "";
 
   $("birth").value = inputDate(child.birthDate ?? child.BirthDate ?? "");
+
+  $("developmentalAge").value =
+    child.developmentalAge ??
+    child.DevelopmentalAge ??
+    child.developmental_age ??
+    "";
 
   $("gender").value = gender(child.gender ?? child.Gender);
 
@@ -450,6 +480,8 @@ async function saveChild(event) {
 
   const birth = $("birth").value;
 
+  const developmentalAge = $("developmentalAge").value.trim();
+
   const selectedGender = $("gender").value;
 
   if (!name) {
@@ -472,6 +504,15 @@ async function saveChild(event) {
     return;
   }
 
+  const actualAge = calculateAge(birth);
+
+  if (actualAge < 2 || actualAge > 10) {
+    $("formError").textContent = "لا يمكن إضافة الطفل إلا إذا كان عمره بين 2 و10 سنوات.";
+    $("formError").style.display = "block";
+    $("birth").focus();
+    return;
+  }
+
   if (!selectedGender) {
     $("formError").textContent = "الرجاء اختيار جنس الطفل.";
 
@@ -490,22 +531,20 @@ async function saveChild(event) {
     formData.append("FullName", name);
   }
 
-  const formattedBirthDate = apiDate(birth);
+  // الـ API يستقبل Age، وهو العمر الحقيقي للطفل.
+  // العمر النمائي حقل واجهة فقط لأن الـ API المرسل لا يحتوي على حقل له.
+  const apiAge = actualAge;
 
-  formData.append("birthDate", formattedBirthDate);
-
+  formData.append("Age", String(apiAge));
   formData.append("gender", selectedGender);
 
+  console.log("DevelopmentalAge:", developmentalAge || "غير محدد");
+
   console.log("========== CHILD REQUEST ==========");
-
   console.log("Mode:", editingId ? "EDIT" : "ADD");
-
   console.log("FullName:", name);
-
-  console.log("BirthDate:", formattedBirthDate);
-
+  console.log("Age:", apiAge);
   console.log("Gender:", selectedGender);
-
   console.log("===================================");
 
   const saveButton = $("save");
@@ -519,7 +558,7 @@ async function saveChild(event) {
   $("formError").style.display = "none";
 
   try {
-    let url = API_BASE + "Children";
+    let url = API_BASE + "Parent";
 
     if (editingId) {
       url += "/" + encodeURIComponent(editingId);
@@ -590,7 +629,7 @@ async function deleteChild(id) {
 
   try {
     const response = await fetch(
-      API_BASE + "Children/" + encodeURIComponent(id),
+      API_BASE + "Parent/" + encodeURIComponent(id),
       {
         method: "DELETE",
         headers: headers(),
@@ -636,8 +675,9 @@ function showChildDetails(id, tab = "info") {
 
   const childGender = gender(child.gender ?? child.Gender);
 
-  const childAge =
-    child.age ?? child.Age ?? calculateAge(child.birthDate ?? child.BirthDate);
+  const childAge = calculateAge(child.birthDate ?? child.BirthDate) !== "-"
+    ? calculateAge(child.birthDate ?? child.BirthDate)
+    : (child.age ?? child.Age ?? "-");
 
   $("detailName").textContent = name;
 
@@ -666,72 +706,48 @@ async function loadChildTab(tab) {
   }
 
   if (tab === "info") {
-    const name = child.fullName || child.FullName || child.name || "-";
-
-    const childAge =
-      child.age ??
-      child.Age ??
-      calculateAge(child.birthDate ?? child.BirthDate);
-
-    const childGender = gender(child.gender ?? child.Gender);
-
     $("detailContent").innerHTML = `
-      <div class="rows">
-
-        <div>
-
-          <b>
-            الاسم الكامل
-          </b>
-
-          <span>
-            ${esc(name)}
-          </span>
-
-        </div>
-
-        <div>
-
-          <b>
-            العمر
-          </b>
-
-          <span>
-            ${
-              childAge === "-" || childAge === null
-                ? "العمر غير محدد"
-                : esc(childAge) + " سنوات"
-            }
-          </span>
-
-        </div>
-
-        <div>
-
-          <b>
-            الجنس
-          </b>
-
-          <span>
-            ${esc(childGender)}
-          </span>
-
-        </div>
-
-        <div>
-
-          <b>
-            معرّف الطفل
-          </b>
-
-          <span>
-            ${esc(child.id || "-")}
-          </span>
-
-        </div>
-
+      <div class="loading">
+        جاري تحميل بيانات الطفل...
       </div>
     `;
+
+    try {
+      const response = await fetch(
+        API_BASE + "Parent/" + encodeURIComponent(selectedId),
+        { method: "GET", headers: headers() }
+      );
+
+      const responseText = await response.text();
+      let result = null;
+
+      if (responseText) {
+        try { result = JSON.parse(responseText); } catch (_) {}
+      }
+
+      if (!response.ok) {
+        throw new Error(getApiErrorMessage(result, responseText));
+      }
+
+      const data = result?.data ?? result ?? child;
+      const name = data.fullName || data.FullName || data.name || "-";
+      const childAge = calculateAge(data.birthDate ?? data.BirthDate ?? child.birthDate ?? child.BirthDate) !== "-"
+        ? calculateAge(data.birthDate ?? data.BirthDate ?? child.birthDate ?? child.BirthDate)
+        : (data.age ?? data.Age ?? "-");
+      const childGender = gender(data.gender ?? data.Gender);
+
+      $("detailContent").innerHTML = `
+        <div class="rows">
+          <div><b>الاسم الكامل</b><span>${esc(name)}</span></div>
+          <div><b>العمر</b><span>${childAge === "-" || childAge === null ? "غير محدد" : esc(childAge) + " سنوات"}</span></div>
+          <div><b>الجنس</b><span>${esc(childGender)}</span></div>
+          <div><b>معرّف الطفل</b><span>${esc(data.id || child.id || "-")}</span></div>
+        </div>
+      `;
+    } catch (error) {
+      console.error("ChildInfo failed:", error);
+      $("detailContent").innerHTML = `<div class="noData">${esc(error.message)}</div>`;
+    }
 
     return;
   }
@@ -739,11 +755,11 @@ async function loadChildTab(tab) {
   let endpoint = "";
 
   if (tab === "games") {
-    endpoint = `Children/${selectedId}/games`;
+    endpoint = `Parent/${selectedId}`;
   } else if (tab === "tests") {
-    endpoint = `Children/${selectedId}/tests`;
+    endpoint = `Parent/${selectedId}`;
   } else if (tab === "reports") {
-    endpoint = `Children/${selectedId}/reports`;
+    endpoint = `Reports/child/${selectedId}`;
   }
 
   $("detailContent").innerHTML = `
@@ -896,46 +912,6 @@ if ($("userName")) {
 if ($("userAvatar")) {
   $("userAvatar").textContent = fullName[0] || "م";
 }
-
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-}
-
-function updateThemeIcon() {
-  $("theme").innerHTML = document.body.classList.contains("dark")
-    ? '<i data-lucide="moon"></i>'
-    : '<i data-lucide="sun"></i>';
-
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-}
-
-updateThemeIcon();
-
-$("theme").addEventListener("click", function () {
-  document.body.classList.toggle("dark");
-
-  const isDark = document.body.classList.contains("dark");
-
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-
-  updateThemeIcon();
-});
-$("bell").addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  $("notifications").classList.toggle("show");
-});
-
-document.addEventListener("click", function (event) {
-  if (
-    !event.target.closest("#bell") &&
-    !event.target.closest("#notifications")
-  ) {
-    $("notifications").classList.remove("show");
-  }
-});
 
 if (window.lucide) {
   lucide.createIcons();

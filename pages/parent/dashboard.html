@@ -21,43 +21,7 @@
         <div class="brand">
           <div class="brand-icon"><i data-lucide="brain-circuit"></i></div>
           <div class="brand-text">مستكشف<span>القدرات</span></div>
-        </div>
-
-        <div class="top-actions">
-          <button
-            class="icon-btn"
-            id="themeToggle"
-            title="تبديل المظهر"
-            aria-label="تبديل المظهر"
-          >
-            <i data-lucide="sun"></i>
-          </button>
-
-          <div class="notification-wrapper">
-            <button
-              class="icon-btn"
-              id="notificationToggle"
-              title="الإشعارات"
-              aria-label="الإشعارات"
-            >
-              <i data-lucide="bell"></i>
-            </button>
-
-            <div class="notification-panel" id="notificationPanel">
-              <div class="notification-head">
-                <strong>الإشعارات</strong>
-                <span class="notification-count">0 جديد</span>
-              </div>
-              <div class="notification-empty">
-                <i data-lucide="bell-off"></i>
-                <strong>لا توجد إشعارات</strong>
-                لا توجد إشعارات جديدة حاليًا.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="profile">
+        </div><div class="profile">
           <div class="avatar">b</div>
           <div class="profile-info">
             <div class="profile-name" id="sidebarUserName">جاري التحميل...</div>
@@ -107,23 +71,7 @@
               مساء النور
               <span id="userFullName">جاري التحميل...</span>
             </h1>
-            <p>إليك نظرة عامة على آخر التطورات والأنشطة.</p>
-
-            <div class="welcome-buttons">
-              <button
-                class="btn btn-white"
-                onclick="goToPage('./children.html')"
-              >
-                <i data-lucide="users-round"></i> الأبناء
-              </button>
-              <button
-                class="btn btn-outline"
-                onclick="goToPage('./games.html')"
-              >
-                <i data-lucide="gamepad-2"></i> الألعاب
-              </button>
-            </div>
-          </div>
+            <p>إليك نظرة عامة على آخر التطورات والأنشطة.</p></div>
         </section>
 
         <section class="stats" id="children">
@@ -146,14 +94,6 @@
           </div>
 
           <div class="stat">
-            <div class="stat-icon gold"><i data-lucide="file-text"></i></div>
-            <div>
-              <div class="stat-label">التقارير المصدرة</div>
-              <div class="stat-value">0</div>
-            </div>
-          </div>
-
-          <div class="stat">
             <div class="stat-icon blue">
               <i data-lucide="chart-no-axes-combined"></i>
             </div>
@@ -161,58 +101,6 @@
               <div class="stat-label">معدل التقدم العام</div>
               <div class="stat-value">85%</div>
             </div>
-          </div>
-        </section>
-
-        <section class="smart">
-          <div class="section-head">
-            <div class="section-icon"><i data-lucide="sparkles"></i></div>
-            <h2>نظرة ذكية</h2>
-          </div>
-
-          <div class="insight-card">
-            <div class="info-circle"><i data-lucide="info"></i></div>
-            <h3>ابدأ رحلة طفلك!</h3>
-            <p>جرّب لعبة واحدة على الأقل اليوم لبدء التحليل.</p>
-          </div>
-        </section>
-
-        <section class="bottom-grid">
-          <div class="panel" id="games">
-            <div class="panel-head">
-              <div class="panel-title">
-                <div class="section-icon"><i data-lucide="activity"></i></div>
-                <h2>توزيع المهارات</h2>
-              </div>
-              <span class="badge">📊 تحليل ذكي</span>
-            </div>
-
-            <div class="empty">
-              <div class="empty-icon"><i data-lucide="chart-spline"></i></div>
-              <strong>لا توجد بيانات كافية للرسم البياني</strong>
-            </div>
-          </div>
-
-          <div class="panel report-panel" id="reports">
-            <div class="panel-head">
-              <div class="panel-title">
-                <div
-                  class="section-icon"
-                  style="background: #fff7e6; color: #f5ad21"
-                >
-                  <i data-lucide="file-text"></i>
-                </div>
-                <h2>أحدث التقارير</h2>
-              </div>
-            </div>
-
-            <div class="latest-reports" id="latestReports">
-              <div class="latest-loading">جاري تحميل التقارير...</div>
-            </div>
-
-            <button class="report-button" onclick="goToPage('./reports.html')">
-              عرض كل التقارير <i data-lucide="arrow-left"></i>
-            </button>
           </div>
         </section>
       </main>

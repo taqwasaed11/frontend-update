@@ -68,26 +68,6 @@ button {
   display: block;
   margin-top: 5px;
 }
-.top-actions {
-  display: flex;
-  gap: 8px;
-  padding: 0 7px;
-  margin-bottom: 17px;
-}
-.icon-btn {
-  border: 0;
-  background: #f7fafc;
-  width: 37px;
-  height: 37px;
-  border-radius: 12px;
-  color: #667788;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-.icon-btn i {
-  width: 18px;
-}
 .profile {
   border: 1px solid var(--border);
   border-radius: 22px;
@@ -258,30 +238,6 @@ button {
   margin: 7px 0 0;
   font-size: 12px;
 }
-.notification-box {
-  position: fixed;
-  top: 72px;
-  right: 315px;
-  width: 330px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(31, 65, 88, 0.14);
-  padding: 18px;
-  display: none;
-  z-index: 100;
-}
-.notification-box.show {
-  display: block;
-}
-.notification-box h3 {
-  margin: 0 0 14px;
-}
-.notification-empty {
-  text-align: center;
-  padding: 28px 10px;
-  color: #8b9aa7;
-}
 .dark {
   --text: #e7eef5;
   --muted: #9aaaba;
@@ -291,18 +247,11 @@ button {
   --primary-soft: #17384a;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
-.dark .icon-btn {
-  background: #202d39;
-  color: #b6c3cf;
-}
 .dark .nav-item:hover {
   background: #20333f;
 }
 .dark .empty-icon {
   background: #202b35;
-}
-.dark .notification-box {
-  background: #192430;
 }
 @media (max-width: 760px) {
   .app {
@@ -317,11 +266,6 @@ button {
   }
   .brand {
     padding-bottom: 12px;
-  }
-  .top-actions {
-    position: absolute;
-    left: 15px;
-    top: 17px;
   }
   .profile {
     margin-bottom: 13px;
@@ -347,11 +291,6 @@ button {
   .primary-btn {
     width: 100%;
     justify-content: center;
-  }
-  .notification-box {
-    right: 15px;
-    top: 130px;
-    width: calc(100% - 30px);
   }
 }
 @media (max-width: 470px) {

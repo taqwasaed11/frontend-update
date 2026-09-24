@@ -5,7 +5,7 @@
   --m: #718096;
   --bg: #f5f8fb;
   --s: #fff;
-  --b: hsl(206, 37%, 93%);
+  --b: #e5edf3;
   --r: #e65353;
 }
 * {
@@ -69,22 +69,6 @@ a {
 .brand span {
   display: block;
   margin-top: 4px;
-}
-.top {
-  display: flex;
-  gap: 8px;
-  padding: 0 7px 17px;
-}
-.top button {
-  border: 0;
-  background: #f7fafc;
-  width: 37px;
-  height: 37px;
-  border-radius: 12px;
-  color: #667788;
-}
-.top i {
-  width: 18px;
 }
 .profile {
   border: 1px solid var(--b);
@@ -430,6 +414,16 @@ label {
   margin-bottom: 14px;
   color: #536474;
 }
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.formRow label {
+  margin-bottom: 14px;
+}
 label input,
 label select {
   display: block;
@@ -530,30 +524,6 @@ label select {
   padding: 50px;
   color: #9aa8b5;
 }
-.notifications {
-  position: fixed;
-  top: 72px;
-  right: 315px;
-  width: 330px;
-  background: white;
-  border: 1px solid var(--b);
-  border-radius: 20px;
-  padding: 18px;
-  display: none;
-  z-index: 110;
-  box-shadow: 0 15px 40px #1f415826;
-}
-.notifications.show {
-  display: block;
-}
-.notifications h3 {
-  margin: 0;
-}
-.notifications p {
-  text-align: center;
-  color: #8b9aa7;
-  padding: 25px;
-}
 .dark {
   --t: #e7eef5;
   --m: #9aaaba;
@@ -583,9 +553,6 @@ label select {
 .dark .search input {
   background: #202c37;
   color: var(--t);
-}
-.dark .notifications {
-  background: #192430;
 }
 @media (max-width: 1150px) {
   .grid {
@@ -623,12 +590,18 @@ label select {
   .grid {
     grid-template-columns: 1fr;
   }
-  .notifications {
-    right: 15px;
-    top: 130px;
-    width: calc(100% - 30px);
+}
+@media (max-width: 600px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .formRow label {
+    margin-bottom: 14px;
   }
 }
+
 @media (max-width: 470px) {
   .nav {
     grid-template-columns: 1fr;

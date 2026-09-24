@@ -95,59 +95,7 @@ a {
   margin-top: 4px;
 }
 
-.top {
-  display: flex;
-  gap: 8px;
 
-  padding: 0 7px 17px;
-}
-
-.top button {
-  position: relative;
-
-  border: 0;
-
-  background: #f7fafc;
-
-  width: 37px;
-  height: 37px;
-
-  border-radius: 12px;
-
-  color: #667788;
-}
-
-.top i {
-  width: 18px;
-}
-
-.bellBadge {
-  position: absolute;
-
-  top: -4px;
-  right: -4px;
-
-  min-width: 17px;
-  height: 17px;
-
-  padding: 0 4px;
-
-  border-radius: 20px;
-
-  background: var(--r);
-  color: white;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.bellBadge.show {
-  display: flex;
-}
 
 .profile {
   border: 1px solid var(--b);
@@ -1024,44 +972,6 @@ label {
   font-size: 10px;
 }
 
-.notifications {
-  position: fixed;
-
-  top: 72px;
-  right: 315px;
-
-  width: 330px;
-
-  background: white;
-
-  border: 1px solid var(--b);
-
-  border-radius: 20px;
-
-  padding: 18px;
-
-  display: none;
-
-  z-index: 110;
-
-  box-shadow: 0 15px 40px #1f415826;
-}
-
-.notifications.show {
-  display: block;
-}
-
-.notifications h3 {
-  margin: 0;
-}
-
-.notifications p {
-  text-align: center;
-
-  color: #8b9aa7;
-
-  padding: 25px;
-}
 
 .dark {
   --t: #e7eef5;
@@ -1087,9 +997,6 @@ label {
 .dark .chatHeader,
 .dark .messageForm,
 .dark .modal,
-.dark .notifications {
-  background: var(--s);
-}
 
 .dark .conversationSearch input,
 .dark .messageForm textarea,

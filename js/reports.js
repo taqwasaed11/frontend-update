@@ -17,11 +17,6 @@ const childFilter = document.getElementById("childFilter");
 
 const currentDate = document.getElementById("currentDate");
 
-const themeToggle = document.getElementById("themeToggle");
-
-const notificationToggle = document.getElementById("notificationToggle");
-
-const notificationPanel = document.getElementById("notificationPanel");
 
 const sidebarUserName = document.getElementById("sidebarUserName");
 
@@ -84,63 +79,6 @@ function updateCurrentDate() {
   currentDate.textContent = formattedDate;
 }
 
-function updateThemeIcon() {
-  if (!themeToggle) {
-    return;
-  }
-
-  const isDark = document.body.classList.contains("dark-mode");
-
-  themeToggle.innerHTML = `
-    <i data-lucide="${isDark ? "moon" : "sun"}"></i>
-  `;
-
-  themeToggle.title = isDark ? "تفعيل المظهر الفاتح" : "تفعيل المظهر الداكن";
-
-  themeToggle.setAttribute("aria-label", themeToggle.title);
-
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-}
-
-function initializeTheme() {
-  const savedTheme = localStorage.getItem("theme");
-
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-  }
-
-  updateThemeIcon();
-}
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-
-    const isDark = document.body.classList.contains("dark-mode");
-
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-
-    updateThemeIcon();
-  });
-}
-
-if (notificationToggle) {
-  notificationToggle.addEventListener("click", function (event) {
-    event.stopPropagation();
-
-    if (notificationPanel) {
-      notificationPanel.classList.toggle("show");
-    }
-  });
-}
-
-document.addEventListener("click", function (event) {
-  if (notificationPanel && !event.target.closest(".notification-wrapper")) {
-    notificationPanel.classList.remove("show");
-  }
-});
 
 const logoutBtn = document.getElementById("logoutBtn");
 

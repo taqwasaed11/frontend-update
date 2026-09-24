@@ -665,20 +665,15 @@ async function loadUnreadCount() {
 function updateUnreadUI(count) {
   const navUnread = $("navUnread");
 
-  const bellBadge = $("bellBadge");
+  if (!navUnread) {
+    return;
+  }
 
   if (count > 0) {
     navUnread.textContent = count > 99 ? "99+" : count;
-
     navUnread.classList.add("show");
-
-    bellBadge.textContent = count > 99 ? "99+" : count;
-
-    bellBadge.classList.add("show");
   } else {
     navUnread.classList.remove("show");
-
-    bellBadge.classList.remove("show");
   }
 }
 
@@ -1025,56 +1020,6 @@ setInterval(async function () {
   }
 }, 10000);
 
-function updateThemeIcon() {
-  $("theme").innerHTML = document.body.classList.contains("dark")
-    ? '<i data-lucide="moon"></i>'
-    : '<i data-lucide="sun"></i>';
-
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-}
-
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-}
-
-updateThemeIcon();
-
-$("theme").addEventListener("click", function () {
-  document.body.classList.toggle("dark");
-
-  const isDark = document.body.classList.contains("dark");
-
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-
-  updateThemeIcon();
-});
-
-const fullName = localStorage.getItem("fullName") || "المستخدم";
-
-if ($("userName")) {
-  $("userName").textContent = fullName;
-}
-
-if ($("userAvatar")) {
-  $("userAvatar").textContent = fullName[0] || "م";
-}
-
-$("bell").addEventListener("click", function (event) {
-  event.stopPropagation();
-
-  $("notifications").classList.toggle("show");
-});
-
-document.addEventListener("click", function (event) {
-  if (
-    !event.target.closest("#bell") &&
-    !event.target.closest("#notifications")
-  ) {
-    $("notifications").classList.remove("show");
-  }
-});
 
 $("messageForm").addEventListener("submit", sendMessage);
 

@@ -94,10 +94,6 @@ body.dark-mode .state-icon {
   background: #1b2631;
 }
 
-body.dark-mode .notification-panel {
-  background: var(--surface);
-  border-color: var(--border);
-}
 
 * {
   box-sizing: border-box;
@@ -200,17 +196,6 @@ a {
   margin-top: 5px;
 }
 
-.top-actions {
-  display: flex;
-
-  justify-content: flex-start;
-
-  gap: 8px;
-
-  margin-bottom: 17px;
-
-  padding: 0 7px;
-}
 
 .icon-btn {
   border: 0;
@@ -240,93 +225,6 @@ a {
   height: 18px;
 }
 
-.notification-wrapper {
-  position: relative;
-}
-
-.notification-panel {
-  position: absolute;
-
-  top: 48px;
-  right: 0;
-
-  width: 300px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  box-shadow: 0 18px 40px rgba(20, 45, 65, 0.16);
-
-  padding: 15px;
-
-  display: none;
-
-  z-index: 100;
-}
-
-.notification-panel.show {
-  display: block;
-}
-
-.notification-head {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  margin-bottom: 12px;
-}
-
-.notification-head strong {
-  font-size: 14px;
-}
-
-.notification-count {
-  font-size: 10px;
-
-  background: var(--primary-soft);
-
-  color: var(--primary);
-
-  padding: 5px 8px;
-
-  border-radius: 20px;
-
-  font-weight: 800;
-}
-
-.notification-empty {
-  text-align: center;
-
-  padding: 24px 10px;
-
-  color: var(--muted);
-
-  font-size: 12px;
-}
-
-.notification-empty i {
-  width: 27px;
-  height: 27px;
-
-  display: block;
-
-  margin: 0 auto 9px;
-}
-
-.notification-empty strong {
-  display: block;
-
-  color: var(--text);
-
-  font-size: 13px;
-
-  margin-bottom: 4px;
-}
 
 .profile {
   border: 1px solid var(--border);
@@ -1348,12 +1246,6 @@ body.dark-mode .recommendation-block {
     padding-bottom: 12px;
   }
 
-  .top-actions {
-    position: absolute;
-
-    left: 15px;
-    top: 17px;
-  }
 
   .profile {
     margin-bottom: 13px;

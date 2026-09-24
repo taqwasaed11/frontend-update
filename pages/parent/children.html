@@ -31,21 +31,7 @@
         <b>
           مستكشف<span>القدرات</span>
         </b>
-      </div>
-
-      <div class="top">
-
-        <button id="theme">
-          <i data-lucide="sun"></i>
-        </button>
-
-        <button id="bell">
-          <i data-lucide="bell"></i>
-        </button>
-
-      </div>
-
-      <div class="profile">
+      </div><div class="profile">
 
         <div id="userAvatar" class="userAvatar">
           م
@@ -177,28 +163,9 @@
 
     </main>
     <div
-      id="notifications"
-      class="notifications"
+      id="overlay"
+      class="overlay"
     >
-
-      <h3>
-        الإشعارات
-      </h3>
-
-      <p>
-        🔔
-        <br />
-        <br />
-        لا توجد إشعارات جديدة
-      </p>
-
-    </div>
-
-  </div>
-  <div
-    id="overlay"
-    class="overlay"
-  >
 
     <div class="modal">
 
@@ -235,17 +202,37 @@
         </label>
 
 
-        <label>
+        <div class="formRow">
 
-          تاريخ الميلاد
+          <label>
 
-          <input
-            id="birth"
-            type="date"
-            required
-          />
+            تاريخ الميلاد
 
-        </label>
+            <input
+              id="birth"
+              type="date"
+              required
+            />
+
+          </label>
+
+          <label>
+
+            العمر النمائي
+
+            <input
+              id="developmentalAge"
+              type="number"
+              min="0"
+              max="18"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="مثال: 5"
+            />
+
+          </label>
+
+        </div>
 
 
         <label>
